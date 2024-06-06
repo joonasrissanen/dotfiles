@@ -32,6 +32,11 @@ export PATH="/usr/local/opt/libpq/bin:$PATH"
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 source /Users/joonasrissanen/.docker/init-zsh.sh || true # Added by Docker Desktop
 
+# Go
+if [ -d "${HOME}/go/bin" ]; then
+    export PATH="${HOME}/go/bin:${PATH}"
+fi
+
 
 # Nix
 if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
