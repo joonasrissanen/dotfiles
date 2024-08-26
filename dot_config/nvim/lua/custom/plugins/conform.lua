@@ -29,7 +29,7 @@ local M = {
 						return { "isort", "black" }
 					end
 				end,
-				go = { "goimports", "gofmt" },
+				go = { "goimports", "gofmt", "golines" },
 				terraform = { "terraform_fmt", "tfsec" },
 				jinja = { "prettier" },
 				ruby = { "rubocop", "solargraph" },
