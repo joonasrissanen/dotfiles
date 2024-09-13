@@ -27,5 +27,9 @@ lspconfig.gopls.setup({
 	},
 })
 
---
--- lspconfig.pyright.setup { blabla}
+-- TypeScript
+lspconfig.tsserver.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+	filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+})
