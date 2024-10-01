@@ -13,8 +13,6 @@ M.general = {
 	n = {
 		[";"] = { ":", "enter command mode", opts = { nowait = true } },
 		["<C-t>"] = { "<cmd>NvimTreeToggle<cr>", "toggle nvimtree" },
-		["qq"] = { "<ESC>", "Escape key", opts = { nowait = true, silent = true } },
-
 		--  format with conform
 		["<leader>fm"] = {
 			function()
@@ -25,10 +23,9 @@ M.general = {
 	},
 	v = {
 		[">"] = { ">gv", "indent" },
-		["qq"] = { "<ESC>", "Escape key", opts = { nowait = true, silent = true } },
 	},
 	i = {
-		["qq"] = { "<ESC>", "Escape key", opts = { nowait = true, silent = true } },
+		["jk"] = { "<ESC>", "Escape key", opts = { nowait = true, silent = true } },
 	},
 }
 
