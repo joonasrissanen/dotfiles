@@ -9,6 +9,7 @@ local M = {
 		local conform = require("conform")
 
 		conform.setup({
+      version = "v0.9",
       formatters_by_ft = {
 				javascript = { "prettierd", "prettier", stop_after_first = true },
 				typescript = { "prettierd", "prettier", stop_after_first = true },
