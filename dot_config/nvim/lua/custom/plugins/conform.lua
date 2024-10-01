@@ -1,6 +1,8 @@
 ---@type NvPluginSpec
 local M = {
 	"stevearc/conform.nvim",
+  branch = "nvim-0.9",
+  version = "7.1.0",
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
 		"aquasecurity/vim-tfsec",
@@ -9,7 +11,6 @@ local M = {
 		local conform = require("conform")
 
 		conform.setup({
-      version = "v0.9",
       formatters_by_ft = {
 				javascript = { "prettierd", "prettier", stop_after_first = true },
 				typescript = { "prettierd", "prettier", stop_after_first = true },
