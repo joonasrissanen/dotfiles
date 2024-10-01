@@ -8,11 +8,6 @@ local M = {
 			handlers = {
 				["textDocument/publishDiagnostics"] = api.filter_diagnostics({ 6133 }),
 			},
-			settings = {
-				tsserver_file_preferences = {
-					importModuleSpecifierPreference = "non-relative",
-				},
-			},
 		})
 		local autocmd = vim.api.nvim_create_autocmd
 		autocmd("BufWritePre", {
