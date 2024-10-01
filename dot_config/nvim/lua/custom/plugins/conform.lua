@@ -9,18 +9,18 @@ local M = {
 		local conform = require("conform")
 
 		conform.setup({
-			formatters_by_ft = {
-				javascript = { "prettier" },
-				typescript = { "prettier" },
-				javascriptreact = { "prettier" },
-				typescriptreact = { "prettier" },
-				svelte = { "prettier" },
-				css = { "prettier" },
-				html = { "prettier" },
-				json = { "prettier" },
-				yaml = { "prettier", "yamllint" },
-				markdown = { "prettier" },
-				graphql = { "prettier" },
+      formatters_by_ft = {
+				javascript = { "prettierd", "prettier", stop_after_first = true },
+				typescript = { "prettierd", "prettier", stop_after_first = true },
+				javascriptreact = { "prettierd", "prettier", stop_after_first = true },
+				typescriptreact = { "prettierd", "prettier", stop_after_first = true },
+				svelte = { "prettierd", "prettier", stop_after_first = true },
+				css = { "prettierd", "prettier", stop_after_first = true },
+				html = { "prettierd", "prettier", stop_after_first = true },
+				json = { "prettierd", "prettier", stop_after_first = true },
+				yaml = { "prettierd", "yamllint" },
+				markdown = { "prettierd", "prettier", stop_after_first = true },
+				graphql = { "prettierd", "prettier", stop_after_first = true },
 				lua = { "stylua" },
 				python = function(bufnr)
 					if conform.get_formatter_info("ruff_format", bufnr).available then
@@ -31,10 +31,10 @@ local M = {
 				end,
 				go = { "goimports", "gofmt", "golines" },
 				terraform = { "terraform_fmt", "tfsec" },
-				jinja = { "prettier" },
+				jinja = { "prettierd", "prettier", stop_after_first = true },
 				ruby = { "rubocop", "solargraph" },
 				rust = { "rustfmt" },
-				["yaml.ansible"] = { "prettier", "ansible_lint" },
+				["yaml.ansible"] = { "prettierd", "ansible_lint" },
 				-- Use the "*" filetype to run formatters on all filetypes.
 				["*"] = { "codespell" },
 				-- Use the "_" filetype to run formatters on filetypes that don't

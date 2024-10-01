@@ -10,17 +10,17 @@ local M = {
 
 		conform.setup({
 			formatters_by_ft = {
-				javascript = { "prettier" },
-				typescript = { "prettier" },
-				javascriptreact = { "prettier" },
-				typescriptreact = { "prettier" },
-				svelte = { "prettier" },
-				css = { "prettier" },
-				html = { "prettier" },
-				json = { "prettier" },
-				yaml = { "prettier", "yamllint" },
-				markdown = { "prettier" },
-				graphql = { "prettier" },
+				javascript = { "prettierd" },
+				typescript = { "prettierd" },
+				javascriptreact = { "prettierd" },
+				typescriptreact = { "prettierd" },
+				svelte = { "prettierd" },
+				css = { "prettierd" },
+				html = { "prettierd" },
+				json = { "prettierd" },
+				yaml = { "prettierd", "yamllint" },
+				markdown = { "prettierd" },
+				graphql = { "prettierd" },
 				lua = { "stylua" },
 				python = function(bufnr)
 					if conform.get_formatter_info("ruff_format", bufnr).available then
@@ -31,7 +31,7 @@ local M = {
 				end,
 				go = { "goimports", "gofmt" },
 				terraform = { "terraform_fmt", "tfsec" },
-				jinja = { "prettier" },
+				jinja = { "prettierd" },
 				ruby = { "rubocop", "solargraph" },
 				rust = { "rustfmt" },
 				["yaml.ansible"] = { "prettier", "ansible_lint" },

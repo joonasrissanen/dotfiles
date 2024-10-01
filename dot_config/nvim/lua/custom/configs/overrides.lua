@@ -33,7 +33,7 @@ M.mason = {
 		"css-lsp",
 		"html-lsp",
 		"deno",
-		"prettier",
+		"prettierd",
 
 		-- c/cpp stuff
 		"clangd",
@@ -103,7 +103,7 @@ M.telescope = {
 			preview_cutoff = 120,
 		},
 		file_sorter = require("telescope.sorters").get_fuzzy_file,
-		file_ignore_patterns = { "node_modules", "package%-lock.json" },
+		file_ignore_patterns = { "node_modules", "package%-lock.json", "react%-modal%-sheet" },
 		generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
 		path_display = { "truncate" },
 		winblend = 0,
