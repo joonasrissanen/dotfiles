@@ -34,6 +34,7 @@ M.mason = {
 		"html-lsp",
 		"deno",
 		"prettierd",
+    "eslint-lsp",
 
 		-- c/cpp stuff
 		"clangd",

@@ -5,7 +5,7 @@ local capabilities = base.capabilities
 local lspconfig = require("lspconfig")
 
 -- if you just want default config for the servers then put them in a table
-local servers = { "html", "cssls", "clangd", "pyright", "terraformls" }
+local servers = { "html", "cssls", "ts_ls", "clangd", "pyright", "terraformls", "eslint" }
 
 for _, lsp in ipairs(servers) do
 	lspconfig[lsp].setup({
@@ -28,9 +28,3 @@ lspconfig.gopls.setup({
 	},
 })
 
--- TypeScript
-lspconfig.ts_ls.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-	filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
-})
