@@ -1,4 +1,4 @@
-local dap = require("dap")
+local dap = require "dap"
 vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
 -- https://microsoft.github.io/vscode-codicons/dist/codicon.html
 local dap_icons = {
@@ -23,18 +23,18 @@ end
 ---- DAP UI -------
 -------------------
 local dapui_opts = {}
-local dapui = require("dapui")
+local dapui = require "dapui"
 dapui.setup(dapui_opts)
 
 -- Open automatically when a new debug session is created
 dap.listeners.after.event_initialized["dapui_config"] = function()
-  dapui.open({})
+  dapui.open {}
 end
 dap.listeners.before.event_terminated["dapui_config"] = function()
-  dapui.close({})
+  dapui.close {}
 end
 dap.listeners.before.event_exited["dapui_config"] = function()
-  dapui.close({})
+  dapui.close {}
 end
 
 -------------------
@@ -54,13 +54,12 @@ require("mason-nvim-dap").setup(dap_mason_opts)
 -------------------
 -- DAP CMP SOURCE -
 -------------------
-local cmp = require("cmp")
-cmp.setup({
+local cmp = require "cmp"
+cmp.setup {
   enabled = function()
-    return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt"
-      or require("cmp_dap").is_dap_buffer()
+    return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt" or require("cmp_dap").is_dap_buffer()
   end,
-})
+}
 
 cmp.setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
   sources = {
@@ -106,28 +105,27 @@ dap.adapters.node2 = {
   type = "executable",
   command = "node",
   args = {
-    vim.fn.stdpath("data")
-      .. "/mason/packages/node-debug2-adapter/out/src/nodeDebug.js",
+    vim.fn.stdpath "data" .. "/mason/packages/node-debug2-adapter/out/src/nodeDebug.js",
   },
 }
 
 dap.adapters.delve = function(callback, config)
   if config.mode == "remote" and config.request == "attach" then
-    callback({
+    callback {
       type = "server",
       host = config.host or "127.0.0.1",
       port = config.port or "38697",
-    })
+    }
   else
-    callback({
+    callback {
       type = "server",
       port = "${port}",
       executable = {
         command = "dlv",
         args = { "dap", "-l", "127.0.0.1:${port}", "--log", "--log-output=dap" },
-        detached = vim.fn.has("win32") == 0,
+        detached = vim.fn.has "win32" == 0,
       },
-    })
+    }
   end
 end
 
