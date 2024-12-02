@@ -7,18 +7,19 @@ local M = {}
 
 M.base46 = {
   theme = "tundra",
-
-  -- hl_override = {
-  -- 	Comment = { italic = true },
-  -- 	["@comment"] = { italic = true },
-  -- },
+  theme_toggle = { "tundra", "github_light" },
 }
 
 M.ui = {
-  statusline = { theme = "default" },
+  statusline = {
+    enabled = true,
+    theme = "minimal",
+    separator_style = "round",
+  },
+
   cmp = {
     lspkind_text = true,
-    style = "flat_dark",
+    style = "atom",
     format_colors = {
       tailwind = false,
     },
