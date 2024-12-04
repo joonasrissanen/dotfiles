@@ -402,4 +402,10 @@ return {
       require "configs.plugin_dap"
     end,
   },
+
+  -- Disable nvim-tree
+  {
+    "nvim-tree/nvim-tree.lua",
+    enabled = false,
+  },
 }
