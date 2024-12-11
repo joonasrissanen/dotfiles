@@ -9,6 +9,7 @@ return {
     "html-lsp",
     "deno",
     "prettierd",
+    "prettier",
     "eslint-lsp",
 
     -- c/cpp stuff
