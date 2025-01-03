@@ -8,18 +8,19 @@ local M = {}
 M.base46 = {
   theme = "tundra",
   theme_toggle = { "tundra", "github_light" },
+  transparency = true,
 }
 
 M.ui = {
   statusline = {
     enabled = true,
-    theme = "minimal",
-    separator_style = "round",
+    theme = "vscode_colored",
+    separator_style = "arrow",
   },
 
   cmp = {
     lspkind_text = true,
-    style = "atom",
+    style = "atom_colored",
     format_colors = {
       tailwind = false,
     },
