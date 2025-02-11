@@ -55,7 +55,7 @@ local options = {
     if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
       return
     end
-    return { lsp_fallback = true, timeout_ms = 1500, async = false }
+    return { timeout_ms = 1500, async = false }
   end,
 }
 
