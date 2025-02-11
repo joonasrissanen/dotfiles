@@ -6,9 +6,9 @@
 local M = {}
 
 M.base46 = {
-  theme = "tundra",
-  theme_toggle = { "tundra", "github_light" },
-  transparency = true,
+  theme = "catppuccin",
+  theme_toggle = { "catppuccin", "github_light" },
+  transparency = false,
 }
 
 M.ui = {
