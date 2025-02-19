@@ -21,9 +21,11 @@ end, { desc = "general format file" })
 
 -- global lsp mappings
 map("n", "<leader>ds", vim.diagnostic.setloclist, { desc = "LSP diagnostic loclist" })
-
+map("n", "<leader>lf", vim.diagnostic.open_float, { desc = "Open diagnostic float" })
+map("n", "<leader>lp", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic" })
+map("n", "<leader>ln", vim.diagnostic.goto_next, { desc = "Go to next diagnostic" })
 -- tabufline
-map("n", "<leader>b", "<cmd>enew<CR>", { desc = "buffer new" })
+map("n", "<leader>b", "<cmd>new<CR>", { desc = "buffer new" })
 
 map("n", "<tab>", function()
   require("nvchad.tabufline").next()
