@@ -1,0 +1,60 @@
+export EDITOR="nvim"
+export VISUAL="nvim"
+
+# Path
+
+if [ -d "/opt/homebrew/bin" ]; then
+  export PATH="/opt/homebrew/bin:${PATH}"
+fi
+
+if [ -d "${HOME}/.local/bin" ]; then
+  export PATH="${HOME}/.local/bin:${PATH}"
+fi
+
+if [ -d "${HOME}/bin" ]; then
+  export PATH="${HOME}/bin:${PATH}"
+fi
+
+if [ -d "${HOME}/.nvm" ]; then
+  export NVM_DIR="${HOME}/.nvm"
+fi
+
+if [ -d "${HOME}/go/bin" ]; then
+  export PATH="${HOME}/go/bin:${PATH}"
+fi
+
+if [ -d "${HOME}/.rbenv/bin" ]; then
+  export PATH="${HOME}/.rbenv/bin:${PATH}"
+  export PATH="${HOME}/.rbenv/shims:${PATH}"
+fi
+
+if [ -d "${HOME}/.pyenv/bin" ]; then
+  export PATH="${HOME}/.pyenv/bin:${PATH}"
+  eval "$(pyenv init --path)"
+fi
+
+if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+  . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+fi
+
+# Aliases
+
+alias gs="git status"
+alias gut="git"
+alias got="git"
+alias gp="git pull"
+
+alias k="kubectl"
+alias pods="kubectl get pods"
+
+alias c="code"
+alias n="nvim"
+alias v="nvim"
+alias vim="nvim"
+
+alias ps="poetry shell"
+
+alias docker_restart="osascript -e 'quit app \"Docker\"' && open -a Docker"
+alias ddown="docker-compose down"
+
+alias cdir='cd "${_%/*}"'
