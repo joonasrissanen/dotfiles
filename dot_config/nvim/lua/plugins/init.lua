@@ -31,9 +31,11 @@ return {
   },
 
   {
-    "stevearc/conform.nvim", -- event = 'BufWritePre', -- uncomment for format on save
-    event = { "BufReadPre", "BufNewFile" },
-    opts = require "configs.plugin_conform",
+    "stevearc/conform.nvim",
+    event = "User FilePost",
+    opts = function()
+      return require "configs.plugin_conform"
+    end,
   },
 
   {
