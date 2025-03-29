@@ -346,7 +346,6 @@ return {
       enabled = true, -- This will find and focus the file in the active buffer every time
       -- the current file is changed while the tree is open.
     },
-    hijack_netrw_behavior = "open_current",
     group_empty_dirs = false,
     use_libuv_file_watcher = true,
     filtered_items = {
