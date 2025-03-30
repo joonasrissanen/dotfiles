@@ -7,6 +7,10 @@ if [ -d "/opt/homebrew/bin" ]; then
   export PATH="/opt/homebrew/bin:${PATH}"
 fi
 
+if [ -d "/opt/homebrew/sbin"] then
+  export PATH="/opt/homebrew/sbin:$PATH"
+fi
+
 if [ -d "${HOME}/.local/bin" ]; then
   export PATH="${HOME}/.local/bin:${PATH}"
 fi
@@ -17,6 +21,8 @@ fi
 
 if [ -d "${HOME}/.nvm" ]; then
   export NVM_DIR="${HOME}/.nvm"
+  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 fi
 
 if [ -d "${HOME}/go/bin" ]; then
@@ -33,6 +39,7 @@ if [ -d "${HOME}/.pyenv/bin" ]; then
   eval "$(pyenv init --path)"
 fi
 
+# TODO: Handle this better
 if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
   . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
 fi
