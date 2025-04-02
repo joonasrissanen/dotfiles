@@ -49,7 +49,6 @@ fi
 alias gs="git status"
 alias gut="git"
 alias got="git"
-alias gp="git pull"
 
 alias k="kubectl"
 alias pods="kubectl get pods"
