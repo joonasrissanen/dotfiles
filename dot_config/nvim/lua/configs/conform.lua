@@ -4,7 +4,7 @@ local options = {
   log_level = vim.log.levels.ERROR,
   -- Conform will notify you when a formatter errors
   notify_on_error = true,
-  lsp_fallback = true,
+  lsp_fallback = "never",
   formatters = {
     shfmt = {
       prepend_args = { "-i", "4" },
@@ -45,8 +45,6 @@ local options = {
     zsh = { "beautysh", "shfmt" },
     sql = { "sqlfluff" },
     ["yaml.ansible"] = { "prettier", "ansible_lint" },
-    -- Use the "*" filetype to run formatters on all filetypes.
-    ["*"] = { "codespell" },
     -- Use the "_" filetype to run formatters on filetypes that don't
     -- have other formatters configured.
     ["_"] = { "trim_whitespace" },
