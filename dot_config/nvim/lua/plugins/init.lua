@@ -34,7 +34,7 @@ return {
     "stevearc/conform.nvim",
     event = "User FilePost",
     opts = function()
-      return require "configs.plugin_conform"
+      return require "configs.conform"
     end,
   },
 
@@ -86,7 +86,7 @@ return {
       },
     },
     opts = function()
-      return require "configs.plugin_neo-tree"
+      return require "configs.neo-tree"
     end,
     config = function(_, opts)
       require("neo-tree").setup(opts)
@@ -156,7 +156,7 @@ return {
       },
     },
     opts = function()
-      return require "configs.plugin_telescope"
+      return require "configs.telescope"
     end,
   },
 
@@ -167,7 +167,7 @@ return {
     build = ":TSUpdate",
     keys = {},
     opts = function()
-      return require "configs.plugin_treesitter"
+      return require "configs.treesitter"
     end,
     config = function(_, opts)
       require("nvim-treesitter.configs").setup(opts)
@@ -199,7 +199,7 @@ return {
     "lewis6991/gitsigns.nvim",
     event = "User FilePost",
     opts = function()
-      return require "configs.plugin_gitsigns"
+      return require "configs.gitsigns"
     end,
   },
 
@@ -234,7 +234,7 @@ return {
       require("mason").setup(opts)
     end,
     opts = function()
-      local opts = require "configs.plugin_mason"
+      local opts = require "configs.mason"
 
       vim.api.nvim_create_user_command("MasonInstallAll", function()
         vim.cmd("MasonInstall " .. table.concat(opts.ensure_installed, " "))
@@ -246,14 +246,14 @@ return {
     "neovim/nvim-lspconfig",
     event = "User FilePost",
     config = function()
-      require "configs.plugin_lspconfig"
+      require "configs.lspconfig"
     end,
   },
   {
     "nvimtools/none-ls.nvim",
     event = "User FilePost",
     opts = function()
-      return require "configs.plugin_null-ls"
+      return require "configs.null-ls"
     end,
   },
 
@@ -457,7 +457,7 @@ return {
       { "rcarriga/cmp-dap" },
     },
     config = function()
-      require "configs.plugin_dap"
+      require "configs.dap"
     end,
   },
 
