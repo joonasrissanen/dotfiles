@@ -243,13 +243,6 @@ return {
     end,
   },
   {
-    "neovim/nvim-lspconfig",
-    event = "User FilePost",
-    config = function()
-      require "configs.lspconfig"
-    end,
-  },
-  {
     "nvimtools/none-ls.nvim",
     event = "User FilePost",
     opts = function()
@@ -465,5 +458,9 @@ return {
   {
     "nvim-tree/nvim-tree.lua",
     enabled = false,
+  },
+  {
+    "neovim/nvim-lspconfig",
+    event = "User FilePost",
   },
 }
