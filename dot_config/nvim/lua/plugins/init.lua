@@ -34,7 +34,7 @@ return {
     "stevearc/conform.nvim",
     event = "User FilePost",
     opts = function()
-      return require "configs.plugin_conform"
+      return require "configs.conform"
     end,
   },
 
@@ -64,17 +64,33 @@ return {
 
   {
     "nvim-neo-tree/neo-tree.nvim",
-    cmd = "Neotree",
-    deactivate = function()
-      vim.cmd [[Neotree close]]
-    end,
+    event = "VeryLazy",
+    branch = "v3.x",
     dependencies = {
       "nvim-telescope/telescope.nvim",
       "nvim-lua/plenary.nvim",
       "nvim-tree/nvim-web-devicons",
       "MunifTanjim/nui.nvim",
-      "s1n7ax/nvim-window-picker",
       "mrbjarksen/neo-tree-diagnostics.nvim",
+      {
+        "s1n7ax/nvim-window-picker",
+        version = "2.*",
+        config = function()
+          require("window-picker").setup {
+            filter_rules = {
+              include_current_win = false,
+              autoselect_one = true,
+              -- filter using buffer options
+              bo = {
+                -- if the file type is one of following, the window will be ignored
+                filetype = { "neo-tree", "neo-tree-popup", "notify" },
+                -- if the buffer type is one of following, the window will be ignored
+                buftype = { "terminal", "quickfix" },
+              },
+            },
+          }
+        end,
+      },
     },
     keys = {
       {
@@ -86,10 +102,11 @@ return {
       },
     },
     opts = function()
-      return require "configs.plugin_neo-tree"
+      return require "configs.neo-tree"
     end,
     config = function(_, opts)
       require("neo-tree").setup(opts)
+      vim.cmd [[nnoremap \ :Neotree reveal<cr>]]
     end,
   },
 
@@ -156,7 +173,7 @@ return {
       },
     },
     opts = function()
-      return require "configs.plugin_telescope"
+      return require "configs.telescope"
     end,
   },
 
@@ -167,7 +184,7 @@ return {
     build = ":TSUpdate",
     keys = {},
     opts = function()
-      return require "configs.plugin_treesitter"
+      return require "configs.treesitter"
     end,
     config = function(_, opts)
       require("nvim-treesitter.configs").setup(opts)
@@ -199,7 +216,7 @@ return {
     "lewis6991/gitsigns.nvim",
     event = "User FilePost",
     opts = function()
-      return require "configs.plugin_gitsigns"
+      return require "configs.gitsigns"
     end,
   },
 
@@ -234,7 +251,7 @@ return {
       require("mason").setup(opts)
     end,
     opts = function()
-      local opts = require "configs.plugin_mason"
+      local opts = require "configs.mason"
 
       vim.api.nvim_create_user_command("MasonInstallAll", function()
         vim.cmd("MasonInstall " .. table.concat(opts.ensure_installed, " "))
@@ -243,17 +260,10 @@ return {
     end,
   },
   {
-    "neovim/nvim-lspconfig",
-    event = "User FilePost",
-    config = function()
-      require "configs.plugin_lspconfig"
-    end,
-  },
-  {
     "nvimtools/none-ls.nvim",
     event = "User FilePost",
     opts = function()
-      return require "configs.plugin_null-ls"
+      return require "configs.null-ls"
     end,
   },
 
@@ -265,6 +275,43 @@ return {
       vim.g.copilot_assume_mapped = true
       vim.api.nvim_set_keymap("i", "<C-O>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
     end,
+  },
+
+  {
+    "olimorris/codecompanion.nvim",
+    opts = function()
+      return {
+        strategies = {
+          chat = {
+            adapter = "copilot",
+          },
+          inline = {
+            adapter = "copilot",
+          },
+          actions = {
+            adapter = "copilot",
+          },
+        },
+        opts = {
+          log_level = "ERROR",
+          language = "English",
+        },
+      }
+    end,
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      {
+        "MeanderingProgrammer/render-markdown.nvim",
+        ft = { "codecompanion" },
+      },
+    },
+    keys = {
+      { "<leader>cc" .. "a", "<cmd>CodeCompanionActions<cr>", mode = { "n", "v" }, desc = "(AI) Action Palette" },
+      { "<leader>cc" .. "c", "<cmd>CodeCompanionChat<cr>", mode = { "n", "v" }, desc = "(AI) New Chat" },
+      { "<leader>cc" .. "A", "<cmd>CodeCompanionAdd<cr>", mode = "v", desc = "(AI) Add Code" },
+      { "<leader>cc" .. "i", "<cmd>CodeCompanion<cr>", mode = "n", desc = "(AI) Inline Prompt" },
+    },
   },
 
   {
@@ -290,6 +337,17 @@ return {
             },
           },
         },
+      }
+    end,
+  },
+
+  {
+    "kylechui/nvim-surround",
+    version = "^3.0.0", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
+    config = function()
+      require("nvim-surround").setup {
+        -- Configuration here, or leave empty to use defaults
       }
     end,
   },
@@ -420,7 +478,7 @@ return {
       { "rcarriga/cmp-dap" },
     },
     config = function()
-      require "configs.plugin_dap"
+      require "configs.dap"
     end,
   },
 
@@ -430,13 +488,7 @@ return {
     enabled = false,
   },
   {
-    "toppair/peek.nvim",
-    event = { "VeryLazy" },
-    build = "deno task --quiet build:fast",
-    config = function()
-      require("peek").setup()
-      vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
-      vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
-    end,
+    "neovim/nvim-lspconfig",
+    event = "User FilePost",
   },
 }
