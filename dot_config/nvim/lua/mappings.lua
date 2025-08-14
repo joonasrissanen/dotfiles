@@ -19,7 +19,19 @@ map("n", "<leader>fm", function()
   require("conform").format { lsp_fallback = true }
 end, { desc = "general format file" })
 
--- global lsp mappings
+map("v", "K", ":m '<-2<CR>gv=gv", { silent = true, desc = "move selected lines up" })
+map("v", "J", ":m '>+1<CR>gv=gv", { silent = true, desc = "move selected lines down" })
+
+map("n", "J", "mzJ`z")
+map("n", "<C-d>", "<C-d>zz")
+map("n", "<C-u>", "<C-u>zz")
+map("n", "n", "nzzzv")
+map("n", "N", "Nzzzv")
+
+map("x", "<leader>p", [["_dP]])
+
+map("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+-- global ls>+1<CR>gv=gvp mappings
 map("n", "<leader>ds", vim.diagnostic.setloclist, { desc = "LSP diagnostic loclist" })
 map("n", "<leader>lf", vim.diagnostic.open_float, { desc = "Open diagnostic float" })
 map("n", "<leader>lp", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic" })
