@@ -29,6 +29,10 @@ o.relativenumber = true
 o.numberwidth = 2
 o.ruler = false
 
+opt.scrolloff = 8
+
+opt.incsearch = true
+
 -- disable nvim intro
 opt.shortmess:append "sI"
 
