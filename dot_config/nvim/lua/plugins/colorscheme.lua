@@ -16,17 +16,16 @@ return {
       vim.cmd.colorscheme "rose-pine"
       local groups = {
         "Normal",
-        -- "NeoTreeNormal",
-        -- "NeoTreeNormalNC",
-        -- "BufferLineFill",
-        -- "DiagnosticError",
-        -- "Float",
-        -- "NvimFloat",
-        -- "DiagnosticFloatingError",
-        -- "CocDiagnosticError",
+        "NeoTreeNormal",
+        "NeoTreeNormalNC",
+        "BufferLineFill",
+        "DiagnosticError",
+        "Float",
+        "NvimFloat",
+        "DiagnosticFloatingError",
+        "CocDiagnosticError",
         "NormalFloat",
       }
-      -- trying to make the popup opaque
       for _, group in ipairs(groups) do
         vim.api.nvim_set_hl(0, group, { bg = nil, ctermbg = nil })
       end
