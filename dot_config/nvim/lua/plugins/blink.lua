@@ -2,6 +2,7 @@ return {
   "saghen/blink.cmp",
   dependencies = {
     "fang2hou/blink-copilot",
+    "rafamadriz/friendly-snippets"
   },
   version = "1.*",
   opts = function(_, opts)
@@ -36,7 +37,7 @@ return {
       -- Adjusts spacing to ensure icons are aligned
       nerd_font_variant = "mono",
     }
-    signature = { enabled = true }
+    opts.signature = { enabled = true }
     opts.cmdline = {
       enabled = true,
     }
@@ -52,7 +53,6 @@ return {
         },
       },
     }
-
     -- NOTE: The new way to enable LuaSnip
     -- Merge custom sources with the existing ones from lazyvim
     -- NOTE: by default lazyvim already includes the lazydev source, so not adding it here again
