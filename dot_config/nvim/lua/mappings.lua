@@ -2,10 +2,9 @@ vim.g.mapleader = " "
 
 local map = vim.keymap.set
 
-map("n", ";", ":", { desc = "CMD enter command mode" })
-map("i", "jk", "<ESC>")
+map("n", ";", ":", { desc = "cmd enter command mode" })
 
-map("i", "<C-b>", "<ESC>^i", { desc = "move beginning of line" })
+map("i", "<C-b>", "<esc>^i", { desc = "move beginning of line" })
 map("i", "<C-e>", "<End>", { desc = "move end of line" })
 
 map("n", "<Esc>", "<cmd>noh<CR>", { desc = "general clear highlights" })
@@ -24,13 +23,20 @@ end, { desc = "general format file" })
 map("v", "K", ":m '<-2<CR>gv=gv", { silent = true, desc = "move selected lines up" })
 map("v", "J", ":m '>+1<CR>gv=gv", { silent = true, desc = "move selected lines down" })
 
-map("n", "J", "mzJ`z")
-map("n", "<C-d>", "<C-d>zz")
-map("n", "<C-u>", "<C-u>zz")
+-- Surround mappings
+map("x", '"', [[c"<C-r>""<Esc>]], { noremap = true, silent = true , desc = "wrap selected text in double quotes"})
+map("x", "'", [[c'<C-r>"'<Esc>]], { noremap = true, silent = true, desc = "wrap selected text in single quotes" })
+map("x", "(", [[c(<C-r>")<Esc>]], { noremap = true, silent = true, desc = "wrap selected text in parentheses" })
+map("x", "[", [[c[<C-r>"]<Esc>]], { noremap = true, silent = true, desc = "wrap selected text in square brackets" })
+map("x", "{", [[c{<C-r>"}<Esc>]], { noremap = true, silent = true, desc = "wrap selected text in curly braces" })
+
+map("n", "J", "mzJ`z", { desc = "join lines and keep cursor position" })
+map("n", "<C-d>", "<C-d>zz", { desc = "scroll down and keep cursor position" })
+map("n", "<C-u>", "<C-u>zz", { desc = "scroll up and keep cursor position" })
 map("n", "n", "nzzzv")
 map("n", "N", "Nzzzv")
 
-map("x", "<leader>p", [["_dP]])
+map("x", "<leader>p", [["_dP]], { desc = "paste without replacing register" })
 
 map("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
