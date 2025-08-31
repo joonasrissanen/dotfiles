@@ -3,7 +3,7 @@ local config = {
   defaults = { lazy = true },
   install = {
     missing = true,
-    colorscheme = { "rose-pine-moon" },
+    colorscheme = { "rose-pine" },
   },
   spec = {
     { import = "plugins" },
@@ -39,3 +39,4 @@ if not lazy_ok then
 end
 
 lazy.setup(config)
+
