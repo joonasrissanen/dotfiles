@@ -17,10 +17,8 @@ return {
   },
   config = function()
     local bufferline = require "bufferline"
-    local M = {}
 
-    M.highlights = require "rose-pine.plugins.bufferline"
-    M.options = {
+    local options = {
       mode = "buffers", -- set to "tabs" to only show tabpages instead
       style_preset = bufferline.style_preset.minimal, -- or bufferline.style_preset.minimal,
       themable = false, -- true | false, -- allows highlight groups to be overridden i.e. sets highlights as default
@@ -145,7 +143,8 @@ return {
       pattern = "*",
       callback = close_empty_unnamed_buffers,
     })
-
-    bufferline.setup(M)
+    bufferline.setup {
+      options = options,
+    }
   end,
 }
