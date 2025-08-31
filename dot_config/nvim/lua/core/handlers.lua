@@ -20,15 +20,15 @@ M.on_attach = function(_, bufnr)
 
   local complete_config = function(arg)
     return vim
-      .iter(vim.api.nvim_get_runtime_file(('lsp/%s*.lua'):format(arg), true))
+      .iter(vim.api.nvim_get_runtime_file(("lsp/%s*.lua"):format(arg), true))
       :map(function(path)
-        local file_name = path:match('[^/]*.lua$')
+        local file_name = path:match "[^/]*.lua$"
         return file_name:sub(0, #file_name - 4)
       end)
       :totable()
   end
 
-  vim.api.nvim_create_user_command('LspInfo', ':checkhealth vim.lsp', { desc = 'Alias to `:checkhealth vim.lsp`' })
+  vim.api.nvim_create_user_command("LspInfo", ":checkhealth vim.lsp", { desc = "Alias to `:checkhealth vim.lsp`" })
 
   vim.api.nvim_create_user_command("LspLogs", function()
     local log_path = vim.lsp.get_log_path()
@@ -39,7 +39,7 @@ M.on_attach = function(_, bufnr)
     end
   end, { nargs = 0, desc = "Show LSP logs" })
 
-  vim.api.nvim_create_user_command('LspRestart', function(info)
+  vim.api.nvim_create_user_command("LspRestart", function(info)
     local clients = info.fargs
 
     -- Default to restarting all active servers
@@ -69,8 +69,8 @@ M.on_attach = function(_, bufnr)
       end
     end)
   end, {
-    desc = 'Restart the given client',
-    nargs = '?',
+    desc = "Restart the given client",
+    nargs = "?",
     complete = complete_client,
   })
 
