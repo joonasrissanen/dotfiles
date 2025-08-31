@@ -2,7 +2,7 @@ return {
   "saghen/blink.cmp",
   dependencies = {
     "fang2hou/blink-copilot",
-    "rafamadriz/friendly-snippets"
+    "rafamadriz/friendly-snippets",
   },
   version = "1.*",
   opts = function(_, opts)
@@ -63,7 +63,6 @@ return {
           name = "lsp",
           enabled = true,
           module = "blink.cmp.sources.lsp",
-          kind = "LSP",
           min_keyword_length = 2,
           score_offset = 90, -- the higher the number, the higher the priority
         },
