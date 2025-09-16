@@ -1,4 +1,4 @@
-theme = catppuccin-mocha
+theme = dark:Catppuccin Mocha,light:Catppuccin Latte
 font-family = CaskaydiaCove Nerd Font
 font-size = 14
 gtk-titlebar = false
