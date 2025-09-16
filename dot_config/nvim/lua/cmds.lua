@@ -6,3 +6,9 @@ cmd("Q", function()
 end, {
   desc = "Close all buffers and exit",
 })
+
+cmd("W", function()
+  vim.cmd "w"
+end, {
+  desc = "Save current buffer",
+})

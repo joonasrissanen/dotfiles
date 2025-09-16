@@ -3,6 +3,10 @@ vim.g.mapleader = " "
 local map = vim.keymap.set
 
 map("n", ";", ":", { desc = "cmd enter command mode" })
+map("n", "_", ":", { desc = "cmd enter command mode" })
+
+map("n", "<leader>w", "<cmd>w<CR>", { desc = "save file" })
+map("v", "<leader>w", "<cmd>w<CR>", { desc = "save file" })
 
 map("i", "<C-b>", "<esc>^i", { desc = "move beginning of line" })
 map("i", "<C-e>", "<End>", { desc = "move end of line" })
@@ -24,7 +28,7 @@ map("v", "K", ":m '<-2<CR>gv=gv", { silent = true, desc = "move selected lines u
 map("v", "J", ":m '>+1<CR>gv=gv", { silent = true, desc = "move selected lines down" })
 
 -- Surround mappings
-map("x", '"', [[c"<C-r>""<Esc>]], { noremap = true, silent = true , desc = "wrap selected text in double quotes"})
+map("x", '"', [[c"<C-r>""<Esc>]], { noremap = true, silent = true, desc = "wrap selected text in double quotes" })
 map("x", "'", [[c'<C-r>"'<Esc>]], { noremap = true, silent = true, desc = "wrap selected text in single quotes" })
 map("x", "(", [[c(<C-r>")<Esc>]], { noremap = true, silent = true, desc = "wrap selected text in parentheses" })
 map("x", "[", [[c[<C-r>"]<Esc>]], { noremap = true, silent = true, desc = "wrap selected text in square brackets" })
@@ -40,6 +44,20 @@ map("x", "<leader>p", [["_dP]], { desc = "paste without replacing register" })
 
 map("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
+-- search highlighted text
+map("v", "//", function()
+  vim.cmd 'normal! "vy'
+
+  local text = vim.fn.getreg "v"
+
+  text = text:gsub("\n", "")
+
+  local escaped = vim.fn.escape(text, [[\/.*$^~[]])
+
+  vim.fn.setreg("/", escaped)
+  vim.cmd "normal! n"
+end, { noremap = true, silent = true })
+
 -- global ls>+1<CR>gv=gvp mappings
 map("n", "<leader>ds", vim.diagnostic.setloclist, { desc = "LSP diagnostic loclist" })
 map("n", "<leader>lf", vim.diagnostic.open_float, { desc = "Open diagnostic float" })
@@ -54,8 +72,4 @@ map("n", "<leader>/", "gcc", { desc = "toggle comment", remap = true })
 map("v", "<leader>/", "gc", { desc = "toggle comment", remap = true })
 
 -- whichkey
-map("n", "<leader>wK", "<cmd>WhichKey <CR>", { desc = "whichkey all keymaps" })
-
-map("n", "<leader>wk", function()
-  vim.cmd("WhichKey " .. vim.fn.input "WhichKey: ")
-end, { desc = "whichkey query lookup" })
+map("n", "<leader>K", "<cmd>WhichKey <CR>", { desc = "whichkey all keymaps" })
