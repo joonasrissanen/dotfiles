@@ -44,7 +44,6 @@ map("x", "<leader>p", [["_dP]], { desc = "paste without replacing register" })
 
 map("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
--- search highlighted text
 map("v", "//", function()
   vim.cmd 'normal! "vy'
 
@@ -53,10 +52,22 @@ map("v", "//", function()
   text = text:gsub("\n", "")
 
   local escaped = vim.fn.escape(text, [[\/.*$^~[]])
+  local cmd_string = "/" .. escaped
 
-  vim.fn.setreg("/", escaped)
-  vim.cmd "normal! n"
-end, { noremap = true, silent = true })
+  local feed_string = vim.api.nvim_replace_termcodes(cmd_string, true, false, true)
+  vim.api.nvim_feedkeys(feed_string, "n", false)
+end, { desc = "search highlighted text" })
+
+map("v", "<leader>r", function()
+  vim.cmd 'normal! "vy'
+  local text = vim.fn.getreg("v"):gsub("\n", "")
+  local escaped = vim.fn.escape(text, [[\/.*$^~[]])
+
+  local cmd_string = ":%s/" .. escaped .. "//gc"
+
+  local feed_string = vim.api.nvim_replace_termcodes(cmd_string .. "<Left><Left><Left>", true, false, true)
+  vim.api.nvim_feedkeys(feed_string, "c", false)
+end, { desc = "find & replace highlighted text with confirmation" })
 
 -- global ls>+1<CR>gv=gvp mappings
 map("n", "<leader>ds", vim.diagnostic.setloclist, { desc = "LSP diagnostic loclist" })
