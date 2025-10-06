@@ -42,6 +42,8 @@ return {
   },
   on_attach = on_attach,
   on_exit = function()
-    vim.api.nvim_clear_autocmds { group = "joonasrissanen/lsp/gopls/autoimport" }
+    vim.schedule(function()
+      vim.api.nvim_clear_autocmds { group = "joonasrissanen/lsp/gopls/autoimport" }
+    end)
   end,
 }
