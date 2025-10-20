@@ -7,6 +7,7 @@ return {
   end,
   opts = function()
     local opts = {
+      ---@type '"prepend"' | '"append"' | '"skip"'
       PATH = "prepend",
       ensure_installed = {
         -- lua stuff
@@ -27,6 +28,7 @@ return {
 
         -- shell stuff
         "shfmt",
+        "bash-language-server",
         -- python
         "pyright",
         "ruff",
