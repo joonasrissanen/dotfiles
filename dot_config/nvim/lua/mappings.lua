@@ -40,8 +40,7 @@ map("n", "<C-u>", "<C-u>zz", { desc = "scroll up and keep cursor position" })
 map("n", "n", "nzzzv")
 map("n", "N", "Nzzzv")
 
-map("x", "<leader>p", [["_dP]], { desc = "paste without replacing register" })
-
+map("x", "p", [["_dP]], { noremap = true, silent = true })
 map("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 map("v", "//", function()
