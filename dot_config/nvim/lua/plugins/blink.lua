@@ -4,6 +4,7 @@ return {
     "fang2hou/blink-copilot",
     "rafamadriz/friendly-snippets",
   },
+  event = { "BufReadPre", "BufNewFile" },
   version = "1.*",
   opts = function(_, opts)
     opts.enabled = function()
