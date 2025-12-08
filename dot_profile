@@ -44,6 +44,14 @@ if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
   . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
 fi
 
+if [ -e "${HOME}/.colima/default/docker.sock" ]; then
+  export DOCKER_HOST="unix://${HOME}/.colima/default/docker.sock"
+fi
+
+if [ -e "${HOME}/.gvm/scripts/gvm" ]; then
+  [[ -s "${HOME}/.gvm/scripts/gvm" ]] && source "${HOME}/.gvm/scripts/gvm"
+fi
+
 # Aliases
 
 alias gs="git status"
