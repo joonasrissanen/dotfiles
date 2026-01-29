@@ -27,6 +27,9 @@ end, { desc = "general format file" })
 map("v", "K", ":m '<-2<CR>gv=gv", { silent = true, desc = "move selected lines up" })
 map("v", "J", ":m '>+1<CR>gv=gv", { silent = true, desc = "move selected lines down" })
 
+map({ "n", "x" }, "H", "^", { desc = "Go to first non-blank" })
+map({ "n", "x" }, "L", "g_", { desc = "Go to last non-blank" })
+
 -- Surround mappings
 map("x", '"', [[c"<C-r>""<Esc>]], { noremap = true, silent = true, desc = "wrap selected text in double quotes" })
 map("x", "'", [[c'<C-r>"'<Esc>]], { noremap = true, silent = true, desc = "wrap selected text in single quotes" })
@@ -41,7 +44,20 @@ map("n", "n", "nzzzv")
 map("n", "N", "Nzzzv")
 
 map("x", "p", [["_dP]], { noremap = true, silent = true })
+
+-- Find and replace mappings
 map("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+map("x", "<leader>s", function()
+  vim.cmd 'normal! "vy'
+  local text = vim.fn.getreg("v"):gsub("\n", "")
+  local escaped = vim.fn.escape(text, [[\/]])
+
+  local cmd = ":%s/" .. escaped .. "/" .. escaped .. "/gI"
+  local left3 = vim.api.nvim_replace_termcodes("<Left><Left><Left>", true, false, true)
+
+  vim.api.nvim_feedkeys(cmd .. left3, "n", false)
+end, { desc = "Find & replace highlighted text" })
+map("x", "<leader>S", [[:s/]], { noremap = true, silent = false })
 
 map("v", "//", function()
   vim.cmd 'normal! "vy'
@@ -56,17 +72,6 @@ map("v", "//", function()
   local feed_string = vim.api.nvim_replace_termcodes(cmd_string, true, false, true)
   vim.api.nvim_feedkeys(feed_string, "n", false)
 end, { desc = "search highlighted text" })
-
-map("v", "<leader>r", function()
-  vim.cmd 'normal! "vy'
-  local text = vim.fn.getreg("v"):gsub("\n", "")
-  local escaped = vim.fn.escape(text, [[\/.*$^~[]])
-
-  local cmd_string = ":%s/" .. escaped .. "//gc"
-
-  local feed_string = vim.api.nvim_replace_termcodes(cmd_string .. "<Left><Left><Left>", true, false, true)
-  vim.api.nvim_feedkeys(feed_string, "c", false)
-end, { desc = "find & replace highlighted text with confirmation" })
 
 -- global ls>+1<CR>gv=gvp mappings
 map("n", "<leader>ds", vim.diagnostic.setloclist, { desc = "LSP diagnostic loclist" })
