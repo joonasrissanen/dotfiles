@@ -73,6 +73,7 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter-context",
+    event = { "BufReadPost", "BufNewFile" },
     after = "nvim-treesitter",
     config = function()
       require("treesitter-context").setup {
