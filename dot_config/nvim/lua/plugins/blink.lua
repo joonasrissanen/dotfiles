@@ -55,6 +55,16 @@ return {
     opts.sources = vim.tbl_deep_extend("force", opts.sources or {}, {
       default = { "lsp", "path", "snippets", "buffer", "copilot" },
       providers = {
+        copilot = {
+          name = "copilot",
+          module = "blink-copilot",
+          score_offset = 95,
+          async = true,
+          opts = {
+            max_completions = 3,
+            max_attempts = 2,
+          },
+        },
         lsp = {
           name = "lsp",
           enabled = true,
@@ -91,17 +101,6 @@ return {
           min_keyword_length = 2,
           module = "blink.cmp.sources.snippets",
           score_offset = 85, -- the higher the number, the higher the priority
-        },
-        -- -- Third class citizen mf always talking shit
-        copilot = {
-          name = "copilot",
-          module = "blink-copilot",
-          score_offset = -100, -- the higher the number, the higher the priority
-          async = true,
-          opts = {
-            max_completions = 3,
-            max_attempts = 2,
-          },
         },
       },
     })
