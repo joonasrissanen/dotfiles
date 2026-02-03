@@ -3,10 +3,18 @@ return {
     "zbirenbaum/copilot.lua",
     cmd = { "Copilot" },
     event = "InsertEnter",
+    dependencies = {
+      {
+        "copilotlsp-nvim/copilot-lsp",
+        config = function()
+          vim.g.copilot_nes_debounce = 500
+        end,
+      },
+    },
     config = function()
       require("copilot").setup {
         suggestion = { enabled = true },
-        panel = { enabled = false },
+        panel = { enabled = true },
       }
     end,
   },
