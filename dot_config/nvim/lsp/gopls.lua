@@ -4,15 +4,21 @@ local function on_attach()
   local autoimport = vim.api.nvim_create_augroup("joonasrissanen/lsp/gopls/autoimport", { clear = true })
   vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = "*.go",
-    callback = function()
-      local params = vim.lsp.util.make_range_params()
+    callback = function(args)
+      -- Check if formatting is disabled for this specific buffer
+      local bufnr = args.buf
+      if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+        return
+      end
+
+      local params = vim.lsp.util.make_range_params(nil, nil, bufnr)
       params.context = { only = { "source.organizeImports" } }
       -- buf_request_sync defaults to a 1000ms timeout. Depending on your
       -- machine and codebase, you may want longer. Add an additional
       -- argument after params if you find that you have to write the file
       -- twice for changes to be saved.
       -- E.g., vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, 3000)
-      local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params)
+      local result = vim.lsp.buf_request_sync(bufnr, "textDocument/codeAction", params)
       for cid, res in pairs(result or {}) do
         for _, r in pairs(res.result or {}) do
           if r.edit then
