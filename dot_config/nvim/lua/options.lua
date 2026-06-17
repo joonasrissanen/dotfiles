@@ -49,6 +49,11 @@ o.updatetime = 250
 -- when cursor reaches end/beginning of line
 opt.whichwrap:append "<>[]hl"
 
+-- pkl-neovim LSP
+g.pkl_neovim = {
+  start_command = { "pkl-lsp" },
+}
+
 -- disable some default providers
 g.loaded_node_provider = 0
 g.loaded_python3_provider = 0
