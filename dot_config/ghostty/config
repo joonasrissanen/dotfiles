@@ -3,3 +3,4 @@ font-family = CaskaydiaCove Nerd Font
 font-size = 14
 gtk-titlebar = false
 window-decoration = none
+keybind = global:opt+§=toggle_quick_terminal
