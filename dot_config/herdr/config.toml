@@ -1,0 +1,92 @@
+onboarding = false
+
+[terminal]
+default_shell = "zsh"
+new_cwd = "follow"           # new panes inherit cwd (like tmux #{pane_current_path})
+
+[advanced]
+scrollback_limit_bytes = 10000000  # ~100k lines worth of scrollback
+
+[worktrees]
+directory = "~/.herdr/worktrees"
+
+[ui]
+prompt_new_tab_name = false
+
+[keys]
+prefix = "ctrl+a"
+
+# Navigation
+goto = "prefix+s"                  # session navigator
+settings = "prefix+shift+s"
+new_workspace = "prefix+ctrl+c"    # new session/workspace
+next_workspace = "prefix+n"
+previous_workspace = "prefix+p"
+new_tab = "prefix+c"               # new tab (window)
+next_tab = "alt+tab"          # next tab (window)
+previous_tab ="alt+shift+tab"
+switch_tab = "prefix+1..9"
+previous_agent = "prefix+shift+tab"     # optional, unset by default
+next_agent = "prefix+tab"         # optional, unset by default
+
+# Pane focus (h/j/k/l)
+focus_pane_left = "prefix+h"
+focus_pane_down = "prefix+j"
+focus_pane_up = "prefix+k"
+focus_pane_right = "prefix+l"
+
+# Pane splitting
+split_horizontal = "prefix+minus"  # split stacked (tmux: split-window -v)
+split_vertical = "prefix+_"            # split side-by-side
+
+# Copy mode
+copy_mode = "prefix+enter"
+
+# Zoom pane (toggle fullscreen)
+zoom = "prefix+f"
+
+# Swap panes (tmux: > and < swap-pane)
+swap_pane_down = "prefix+shift+j"
+swap_pane_up = "prefix+shift+k"
+
+# Worktree
+new_worktree = "prefix+shift+g"
+remove_worktree = "prefix+shift+h"
+
+# Vim-aware pane navigation (herdr-splits.nvim)
+[[keys.command]]
+key = "ctrl+h"
+type = "plugin_action"
+command = "herdr-splits.nav-left"
+description = "navigate left (vim/herdr)"
+
+[[keys.command]]
+key = "ctrl+j"
+type = "plugin_action"
+command = "herdr-splits.nav-down"
+description = "navigate down (vim/herdr)"
+
+[[keys.command]]
+key = "ctrl+k"
+type = "plugin_action"
+command = "herdr-splits.nav-up"
+description = "navigate up (vim/herdr)"
+
+[[keys.command]]
+key = "ctrl+l"
+type = "plugin_action"
+command = "herdr-splits.nav-right"
+description = "navigate right (vim/herdr)"
+
+# Lazygit (opens in zoomed pane, closes when lazygit exits)
+[[keys.command]]
+key = "prefix+g"
+type = "pane"
+command = "lazygit"
+description = "lazygit"
+
+[[keys.command]]
+key = "cmd+r"
+type = "plugin_action"
+command = "persiyanov.reviewr.toggle"
+description = "Agent review"
