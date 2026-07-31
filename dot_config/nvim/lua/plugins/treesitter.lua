@@ -77,6 +77,7 @@ return {
 			}
 
 			vim.treesitter.language.register("templ", "templ")
+			vim.treesitter.language.register("javascript", "blobl")
 		end,
 	},
 	{
