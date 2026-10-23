@@ -1,8 +1,7 @@
 # context-workflow (OpenCode v2)
 
-Port of the pi `context-workflow` extension. You describe a feature; the agent builds it,
-runs the tests, gets an independent review, fixes problems and re-verifies, without
-prompting at every step.
+You describe a feature; the agent builds it, runs the tests, gets an independent review,
+fixes problems and re-verifies, without prompting at every step.
 
 ```
 /workflow <spec text | path/to/spec.md>   start (relative paths resolve against the location directory)
