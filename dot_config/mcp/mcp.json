@@ -1,0 +1,20 @@
+{
+  "mcpServers": {
+    "datadog-eu": { "url": "${MCP_DATADOG_EU_URL}" },
+    "datadog-us": { "url": "${MCP_DATADOG_US_URL}" },
+    "kubernetes": { "command": "bun", "args": ["x", "kubernetes-mcp-server@latest"] },
+    "azure": { "command": "bun", "args": ["x", "@azure/mcp@latest", "server", "start"] },
+    "atlassian": { "url": "${MCP_ATLASSIAN_URL}" },
+    "terraform": { "command": "terraform-mcp-server", "env": { "TFE_TOKEN": "${TFE_TOKEN}" } },
+    "slack": {
+      "url": "${MCP_SLACK_URL}",
+      "auth": "oauth",
+      "oauth": { "clientId": "${MCP_SLACK_CLIENT_ID}", "redirectUri": "http://localhost:3118/callback" }
+    },
+    "prometheus": {
+      "command": "docker",
+      "args": ["run", "-i", "--rm", "-e", "PROMETHEUS_URL", "ghcr.io/pab1it0/prometheus-mcp-server:latest"],
+      "env": { "PROMETHEUS_URL": "${MCP_PROMETHEUS_URL}" }
+    }
+  }
+}
