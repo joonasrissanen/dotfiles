@@ -1,0 +1,16 @@
+.pi/agent/auth.json
+.pi/agent/models-store.json
+.pi/agent/install
+.pi/agent/npm
+.pi/agent/bin
+.pi/agent/sessions
+.pi/agent/mcp-cache.json
+.pi/agent/mcp-onboarding.json
+.pi/agent/trust.json
+.pi/agent/pi-subagents
+.config/.env.secrets
+.config/opencode/node_modules
+.config/opencode/bun.lock
+.config/opencode/package-lock.json
+.config/opencode/.claude
+.config/opencode/service.json
