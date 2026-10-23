@@ -1,0 +1,15 @@
+{
+  "lastChangelogVersion": "1.3.0",
+  "defaultProvider": "anthropic",
+  "defaultModel": "claude-sonnet-5-5",
+  "packages": [
+    "npm:pi-subagents",
+    "npm:@plannotator/pi-extension",
+    "npm:pi-mcp-adapter",
+    "npm:pi-blackhole"
+  ],
+  "extensions": [
+    "-builtin:mcp"
+  ],
+  "hideThinkingBlock": false
+}

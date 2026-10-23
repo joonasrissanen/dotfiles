@@ -14,3 +14,5 @@
 .config/opencode/package-lock.json
 .config/opencode/.claude
 .config/opencode/service.json
+.pi/agent/pi-blackhole
+.pi/agent/missions
