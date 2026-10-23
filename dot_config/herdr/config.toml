@@ -2,7 +2,13 @@ onboarding = false
 
 [terminal]
 default_shell = "zsh"
-new_cwd = "follow"           # new panes inherit cwd (like tmux #{pane_current_path})
+new_cwd = "follow"
+
+[theme]
+name = "catppuccin"
+auto_switch = true
+light_name = "catppuccin-latte"
+dark_name = "catppuccin"
 
 [advanced]
 scrollback_limit_bytes = 10000000  # ~100k lines worth of scrollback
@@ -36,8 +42,8 @@ focus_pane_up = "prefix+k"
 focus_pane_right = "prefix+l"
 
 # Pane splitting
-split_horizontal = "prefix+minus"  # split stacked (tmux: split-window -v)
-split_vertical = "prefix+_"            # split side-by-side
+split_horizontal = "prefix+minus"
+split_vertical = "prefix+_"
 
 # Copy mode
 copy_mode = "prefix+enter"
