@@ -1,4 +1,5 @@
 {
+  "instructions": [],
   "$schema": "https://opencode.ai/config.json",
   "experimental": {
     "mcp_timeout": 60000
@@ -19,6 +20,14 @@
       "*secret*": "deny",
       "*credential*": "deny"
     },
+    "external_directory": {
+      "/tmp": "allow",
+      "/tmp/**": "allow",
+      "/private/tmp": "allow",
+      "/private/tmp/**": "allow",
+      "~/.herdr": "allow",
+      "~/.herdr/**": "allow"
+    },
     "edit": {
       "*.env": "deny",
       "*.env.*": "deny",
@@ -28,29 +37,50 @@
     },
     "bash": {
       "*": "allow",
-      "terraform": "ask",
-      "head *": "allow",
-      "tail *": "allow",
-      "grep *": "allow",
-      "find *": "allow",
-      "ls *": "allow",
-      "cat *": "allow",
-      "xargs *": "allow",
-      "go *": "allow",
-      "mise *": "allow",
-      "git commit *": "deny",
-      "git push *": "deny"
+      "docker push *": "ask",
+      "kubectl apply *": "ask",
+      "kubectl delete *": "ask",
+      "kubectl scale *": "ask",
+      "kubectl exec *": "ask",
+      "kubectl patch *": "ask",
+      "kubectl rollout *": "ask",
+      "terraform apply *": "ask",
+      "terraform destroy *": "ask",
+      "terraform import *": "ask",
+      "gh pr comment *": "ask",
+      "gh pr merge *": "ask",
+      "gh pr close *": "ask",
+      "gh pr review *": "ask",
+      "gh pr edit *": "ask",
+      "gh issue create *": "ask",
+      "gh issue edit *": "ask",
+      "gh issue close *": "ask",
+      "gh release create *": "ask",
+      "gh release edit *": "ask",
+      "gh release delete *": "ask",
+      "git commit *": "ask",
+      "git push *": "ask",
+      "glab mr merge *": "ask",
+      "glab mr close *": "ask",
+      "glab mr create *": "ask",
+      "glab mr update *": "ask",
+      "glab issue create *": "ask",
+      "glab issue close *": "ask",
+      "glab issue update *": "ask",
+      "glab release create *": "ask",
+      "glab release delete *": "ask",
+      "az *": "ask"
     }
   },
   "mcp": {
     "datadog.eu": {
       "type": "remote",
-      "url": "https://mcp.datadoghq.eu/api/unstable/mcp-server/mcp",
+      "url": "https://mcp.datadoghq.eu/v1/mcp",
       "oauth": {}
     },
     "datadog.us": {
       "type": "remote",
-      "url": "https://mcp.datadoghq.com/api/unstable/mcp-server/mcp",
+      "url": "https://mcp.datadoghq.com/v1/mcp",
       "oauth": {}
     },
     "kubernetes": {
@@ -60,14 +90,6 @@
     "azure": {
       "type": "local",
       "command": ["bun", "x", "@azure/mcp@latest", "server", "start"]
-    },
-    "gitlab": {
-      "type": "local",
-      "command": ["bun", "x", "@zereight/mcp-gitlab"],
-      "environment": {
-        "GITLAB_API_URL": "https://gitlab.example.com/api/v4",
-        "GITLAB_PERSONAL_ACCESS_TOKEN": "{env:GITLAB_TOKEN}"
-      }
     },
     "atlassian": {
       "type": "remote",
@@ -79,13 +101,6 @@
       "command": ["terraform-mcp-server"],
       "environment": {
         "TFE_TOKEN": "{env:TFE_TOKEN}"
-      }
-    },
-    "github": {
-      "type": "remote",
-      "url": "https://api.githubcopilot.com/mcp",
-      "headers": {
-        "Authorization": "Bearer {env:GITHUB_TOKEN}"
       }
     },
     "slack": {
