@@ -75,12 +75,12 @@
   "mcp": {
     "datadog.eu": {
       "type": "remote",
-      "url": "https://mcp.datadoghq.eu/v1/mcp",
+      "url": "{env:MCP_DATADOG_EU_URL}",
       "oauth": {}
     },
     "datadog.us": {
       "type": "remote",
-      "url": "https://mcp.datadoghq.com/v1/mcp",
+      "url": "{env:MCP_DATADOG_US_URL}",
       "oauth": {}
     },
     "kubernetes": {
@@ -93,7 +93,7 @@
     },
     "atlassian": {
       "type": "remote",
-      "url": "https://mcp.atlassian.com/v1/mcp",
+      "url": "{env:MCP_ATLASSIAN_URL}",
       "oauth": {}
     },
     "terraform": {
@@ -105,9 +105,9 @@
     },
     "slack": {
       "type": "remote",
-      "url": "https://mcp.slack.com/mcp",
+      "url": "{env:MCP_SLACK_URL}",
       "oauth": {
-        "clientId": "1601185624273.8899143856786",
+        "clientId": "{env:MCP_SLACK_CLIENT_ID}",
         "redirectUri": "http://localhost:3118/callback"
       }
     },
@@ -123,8 +123,9 @@
         "ghcr.io/pab1it0/prometheus-mcp-server:latest"
       ],
       "environment": {
-        "PROMETHEUS_URL": "https://promxy.example.com/"
+        "PROMETHEUS_URL": "{env:MCP_PROMETHEUS_URL}"
       }
     }
-  }
+  },
+  "plugins": ["opencode-dcp"]
 }
